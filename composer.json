@@ -4,7 +4,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.0",
-        "ryanhs/chess.php": "1.0.1",
+        "ryanhs/chess.php": "dev-master",
         "chris-moreton/tournament-utils": "1.0.1",
         "zelenin/elo": "dev-master",
         "aws/aws-sdk-php": "^3.19"
@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/chris-moreton/chess.php"
+            "url": "https://github.com/ryanhs/chess.php"
         }
     ]
 }
