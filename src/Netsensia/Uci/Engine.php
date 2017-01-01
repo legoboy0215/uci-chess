@@ -38,73 +38,73 @@ class Engine
     private $maxThreads = null;
     
     /**
-     * @return member variable $maxThreads
+     * @return int $maxThreads
      */
-    public function getMaxThreads()
+    public function getMaxThreads() : int
     {
         return $this->maxThreads;
     }
 
     /**
-     * @param field_type $maxThreads
+     * @param int $maxThreads
      */
-    public function setMaxThreads($maxThreads)
+    public function setMaxThreads(int $maxThreads)
     {
         $this->maxThreads = $maxThreads;
     }
 
     /**
-     * @return member variable $restrictToElo
+     * @return int $restrictToElo
      */
-    public function getRestrictToElo()
+    public function getRestrictToElo() : int
     {
         return $this->restrictToElo;
     }
 
     /**
-     * @param field_type $restrictToElo
+     * @param int $restrictToElo
      */
-    public function setRestrictToElo($restrictToElo)
+    public function setRestrictToElo(int $restrictToElo)
     {
         $this->restrictToElo = $restrictToElo;
     }
 
     /**
-     * @return the $elo
+     * @return int $elo
      */
-    public function getElo()
+    public function getElo() : int
     {
         return $this->elo;
     }
 
     /**
-     * @param field_type $elo
+     * @param int $elo
      */
-    public function setElo($elo)
+    public function setElo(int $elo)
     {
         $this->elo = $elo;
     }
 
     /**
-     * @return the $name
+     * @return string $name
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
 
     /**
-     * @param field_type $name
+     * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return the $logEngineOutput
+     * @return boolean $logEngineOutput
      */
-    public function getLogEngineOutput()
+    public function getLogEngineOutput() : bool
     {
         return $this->logEngineOutput;
     }
@@ -112,7 +112,7 @@ class Engine
     /**
      * @param boolean $logEngineOutput
      */
-    public function setLogEngineOutput($logEngineOutput)
+    public function setLogEngineOutput(bool $logEngineOutput)
     {
         $this->logEngineOutput = $logEngineOutput;
     }
@@ -123,9 +123,9 @@ class Engine
     }
     
     /**
-     * @return the $outputLog
+     * @return string $outputLog
      */
-    public function getOutputLog()
+    public function getOutputLog() : string
     {
         return $this->outputLog;
     }
@@ -133,15 +133,15 @@ class Engine
     /**
      * @param string $outputLog
      */
-    public function setOutputLog($outputLog)
+    public function setOutputLog(string $outputLog)
     {
         $this->outputLog = $outputLog;
     }
 
     /**
-     * @return the $errorLog
+     * @return string $errorLog
      */
-    public function getErrorLog()
+    public function getErrorLog() : string
     {
         return $this->errorLog;
     }
@@ -149,31 +149,31 @@ class Engine
     /**
      * @param string $errorLog
      */
-    public function setErrorLog($errorLog)
+    public function setErrorLog(string $errorLog)
     {
         $this->errorLog = $errorLog;
     }
 
     /**
-     * @return the $applicationType
+     * @return int $applicationType
      */
-    public function getApplicationType()
+    public function getApplicationType() : int
     {
         return $this->applicationType;
     }
 
     /**
-     * @param field_type $applicationType
+     * @param int $applicationType
      */
-    public function setApplicationType($applicationType)
+    public function setApplicationType(int $applicationType)
     {
         $this->applicationType = $applicationType;
     }
 
     /**
-     * @return the $position
+     * @return string $position
      */
-    public function getPosition()
+    public function getPosition() : string
     {
         return $this->position;
     }
@@ -181,47 +181,45 @@ class Engine
     /**
      * @param string $position
      */
-    public function setPosition($position)
+    public function setPosition(string $position)
     {
         $this->position = $position;
     }
 
     /**
-     * @return the $mode
+     * @return int $mode
      */
-    public function getMode()
+    public function getMode() : int
     {
         return $this->mode;
     }
 
     /**
-     * @param field_type $mode
+     * @param int $mode
      */
-    public function setMode($mode)
+    public function setMode(int $mode)
     {
         $this->mode = $mode;
     }
 
     /**
-     * @return the $modeValue
+     * @return int $modeValue
      */
-    public function getModeValue()
+    public function getModeValue() : int
     {
         return $this->modeValue;
     }
 
     /**
-     * @param field_type $modeValue
+     * @param int $modeValue
      */
-    public function setModeValue($modeValue)
+    public function setModeValue(int $modeValue)
     {
         $this->modeValue = $modeValue;
     }
     
     /**
      * Start the engine
-     * 
-     * @return The engine's process
      */
     public function startEngine()
     {
@@ -272,7 +270,7 @@ class Engine
      * 
      * @param string $command
      */
-    private function sendCommand($command)
+    private function sendCommand(string $command)
     {
         if (!is_resource($this->pipes[0])) {
             throw new \Exception('Engine has gone!');
@@ -284,10 +282,9 @@ class Engine
     }
     
     /**
-     * 
      * @param string $s
      */
-    private function log($s)
+    private function log(string $s)
     {
         if ($this->logEngineOutput) {
             file_put_contents($this->outputLog, $s . PHP_EOL, FILE_APPEND);
@@ -311,7 +308,7 @@ class Engine
      * 
      * @param string $responseStart
      */
-    private function waitFor($responseStart)
+    private function waitFor(string $responseStart)
     {
         if (!is_resource($this->pipes[0])) {
             throw new \Exception('Engine has gone!');
@@ -335,7 +332,7 @@ class Engine
      * 
      * @return string $move
      */
-    public function getMove($moveList = null)
+    public function getMove(string $moveList = null)
     {
         if (!is_resource($this->pipes[0])) {
             $this->startEngine();
@@ -383,7 +380,7 @@ class Engine
      * 
      * @return boolean
      */
-    public function isEngineRunning()
+    public function isEngineRunning() : bool
     {
         return is_resource($this->pipes[0]);
     }
@@ -391,7 +388,7 @@ class Engine
     /**
      * Destructor
      */
-    function __destruct()
+    public function __destruct()
     {
         $this->unloadEngine();
     }
